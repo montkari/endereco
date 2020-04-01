@@ -34,4 +34,13 @@ public class DadosEnderecoClient {
             throw new Exception("Erro ao buscar dados");
         }
     }
+    
+    public ResponseEntity<Object[]> buscaMunicipios(Integer idEstado) throws Exception {
+        RestTemplate restTemplate = new RestTemplate();
+        try {
+            return restTemplate.getForEntity(urlEstados + idEstado + "/municipios", Object[].class);
+        } catch (HttpClientErrorException e) {
+            throw new Exception("Erro ao buscar dados");
+        }
+    }
 }

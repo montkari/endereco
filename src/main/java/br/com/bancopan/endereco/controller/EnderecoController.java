@@ -25,5 +25,10 @@ public class EnderecoController {
     public ResponseEntity<Object[]> buscarEstados() throws Exception {
         return dadosEnderecoClient.buscaEstados();
     }
+    
+    @GetMapping("/{idEstado}/municipios")
+    public ResponseEntity<Object[]> buscarMunicipios(@PathVariable Integer idEstado) throws Exception {
+        return dadosEnderecoClient.buscaMunicipios(idEstado);
+    }
 
 }
