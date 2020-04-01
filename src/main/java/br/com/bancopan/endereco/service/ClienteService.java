@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.bancopan.endereco.domain.Cliente;
 import br.com.bancopan.endereco.dto.ClienteDTO;
-import br.com.bancopan.endereco.exception.ClienteNaoEncontradoException;
+import br.com.bancopan.endereco.exception.NotFoundException;
 import br.com.bancopan.endereco.mapper.ClienteMapper;
 import br.com.bancopan.endereco.repository.ClienteRepository;
 
@@ -24,7 +24,7 @@ public class ClienteService {
 		Cliente cliente = repository.findByCpf(cpf.replaceAll("\\D+", ""));
 		
 		if (Objects.isNull(cliente)) {
-			throw new ClienteNaoEncontradoException("Não encontrado cliente com o CPF " + cpf);
+			throw new NotFoundException("Não encontrado cliente com o CPF " + cpf);
 		}
 		
 		return mapper.toDto(cliente);

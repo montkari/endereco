@@ -1,7 +1,7 @@
 server:
   port: 8080
   servlet:
-    context-path: /endereco
+    context-path: /dados-cadastro
 
 spring: 
   h2:
@@ -21,3 +21,7 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
+      
+url: 
+  consulta: 
+    cep: http://viacep.com.br/ws/ 

@@ -35,10 +35,10 @@ public class AppExceptionHandler extends ResponseEntityExceptionHandler {
         return super.handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
     }
 
-    @ExceptionHandler(ClienteNaoEncontradoException.class)
-    protected ResponseEntity<Object> handleRecursoNaoEncontrado(ClienteNaoEncontradoException ex, WebRequest request) {
+    @ExceptionHandler(NotFoundException.class)
+    protected ResponseEntity<Object> handleRecursoNaoEncontrado(NotFoundException ex, WebRequest request) {
 
-        String mensagemUsuario = messageSource.getMessage("cliente.nao-encontrado", null, LocaleContextHolder.getLocale());
+        String mensagemUsuario = messageSource.getMessage("item.nao-encontrado", null, LocaleContextHolder.getLocale());
         String mensagemDesenvolvedor = ex.getLocalizedMessage();
 
         List<Erro> erros = Collections.singletonList(new Erro(mensagemUsuario, mensagemDesenvolvedor));

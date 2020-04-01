@@ -6,7 +6,6 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,7 +17,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import br.com.bancopan.endereco.dto.ClienteDTO;
 import br.com.bancopan.endereco.service.ClienteService;
 
-@Controller
 @RestController
 @RequestMapping("/cliente")
 public class ClienteController {
@@ -39,5 +37,4 @@ public class ClienteController {
                 "/{id}").buildAndExpand(novoCliente.getCodigo()).toUri();
        return ResponseEntity.created(location).build();
     }
-
 }
