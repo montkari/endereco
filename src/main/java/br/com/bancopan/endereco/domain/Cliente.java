@@ -13,7 +13,6 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,6 +21,8 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name= "TB_CLIENTE")
+@Getter
+@Setter
 public class Cliente {
 	
 	@Id

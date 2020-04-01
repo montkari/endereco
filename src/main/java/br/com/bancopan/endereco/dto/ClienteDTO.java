@@ -1,7 +1,6 @@
 package br.com.bancopan.endereco.dto;
 
 import java.time.LocalDate;
-import java.util.Map;
 
 import org.hibernate.validator.constraints.br.CPF;
 

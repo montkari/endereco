@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.com.bancopan.endereco.domain.Cliente;
 import br.com.bancopan.endereco.dto.ClienteDTO;
-import br.com.bancopan.endereco.mapper.ClienteMapper;
 import br.com.bancopan.endereco.service.ClienteService;
 
 @Controller
@@ -35,13 +33,11 @@ public class ClienteController {
 	
 	@PostMapping
     public ResponseEntity<?> cadastrar(@Valid @RequestBody ClienteDTO dto) {
-        clienteService.cadastrar(dto);
+        ClienteDTO novoCliente = clienteService.cadastrar(dto);
         
-        //URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
-                //"/{id}").buildAndExpand(novoCliente.getCodigo()).toUri();
-       //return ResponseEntity.created(location).build();
-        
-        return ResponseEntity.ok().build();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path(
+                "/{id}").buildAndExpand(novoCliente.getCodigo()).toUri();
+       return ResponseEntity.created(location).build();
     }
 
 }

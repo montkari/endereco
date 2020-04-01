@@ -21,7 +21,7 @@ public class ClienteService {
 	private ClienteMapper mapper;
 	
 	public ClienteDTO buscarPorCpf(String cpf) {
-		Cliente cliente = repository.findByCpf(cpf);
+		Cliente cliente = repository.findByCpf(cpf.replaceAll("\\D+", ""));
 		
 		if (Objects.isNull(cliente)) {
 			throw new ClienteNaoEncontradoException("Não encontrado cliente com o CPF " + cpf);
@@ -31,8 +31,9 @@ public class ClienteService {
 	}
 	
     public ClienteDTO cadastrar(ClienteDTO clienteDTO) {
-    	Cliente novoCliente = mapper.toEntity(clienteDTO);
-        return mapper.toDto(repository.save(novoCliente));
+    	Cliente novoCliente = mapper.toModel(clienteDTO);
+    	novoCliente = repository.save(novoCliente);
+        return mapper.toDto(novoCliente);
      }
 
 }
