@@ -25,3 +25,4 @@ spring:
 url: 
   consulta: 
     cep: http://viacep.com.br/ws/ 
+    estados: http://servicodados.ibge.gov.br/api/v1/localidades/estados/
