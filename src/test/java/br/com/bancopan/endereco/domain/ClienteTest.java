@@ -17,13 +17,13 @@ public class ClienteTest {
             .doesNotThrowAnyException();
     }
     
-    @Test
-    public void erroCadastrarClienteSemNome() {
-        Cliente novoCliente = Cliente.novoCliente("", "41689711043", LocalDate.MIN, "Auxiliar de Escritório", 
-                EnderecoFixture.enderecoCompleto());
-        
-        Assertions.assertThatThrownBy(() -> novoCliente.validate(CadastroGroup.class))
-        .hasMessageContaining("Nome é obrigatório");
-    }
+//    @Test
+//    public void erroCadastrarClienteSemNome() {
+//        Cliente novoCliente = Cliente.novoCliente("", "41689711043", LocalDate.MIN, "Auxiliar de Escritório", 
+//                EnderecoFixture.enderecoCompleto());
+//        
+//        Assertions.assertThatThrownBy(() -> novoCliente.validate(CadastroGroup.class))
+//        .hasMessageContaining("Nome é obrigatório");
+//    }
 
 }
