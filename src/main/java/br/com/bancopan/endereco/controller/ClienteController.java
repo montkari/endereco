@@ -29,13 +29,13 @@ public class ClienteController {
 	
 	@PostMapping
     public ResponseEntity<?> cadastrar(@Valid @RequestBody ClienteDTO dto) {
-       clienteService.cadastrar(dto);
-       return ResponseEntity.ok().build();
+	   ClienteDTO clienteCadastrado = clienteService.cadastrar(dto);
+       return ResponseEntity.ok().body(clienteCadastrado);
     }
 	
 	@PutMapping("/endereco/{cpf}")
-    public ResponseEntity<?> alterarEndereco(@PathVariable String cpf, @RequestBody ClienteDTO dto) {
-       clienteService.alterarEndereco(cpf, dto);
+    public ResponseEntity<?> alterarEndereco(@PathVariable String cpf, @Valid @RequestBody ClienteDTO dto) {
+	    clienteService.alterarEndereco(cpf, dto);
        return ResponseEntity.ok().build();
     }
 }

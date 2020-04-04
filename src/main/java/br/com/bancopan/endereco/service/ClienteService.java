@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.bancopan.endereco.domain.Cliente;
-import br.com.bancopan.endereco.domain.Endereco;
 import br.com.bancopan.endereco.dto.ClienteDTO;
 import br.com.bancopan.endereco.exception.NotFoundException;
 import br.com.bancopan.endereco.mapper.ClienteMapper;
@@ -41,14 +40,21 @@ public class ClienteService {
      }
 	
 	@Transactional
-    public ClienteDTO alterarEndereco(String cpf, ClienteDTO clienteDTO) {
+    public void alterarEndereco(String cpf, ClienteDTO clienteDTO) {
 	    Cliente cliente = repository.findByCpf(cpf.replaceAll("\\D+", ""));
-	    cliente.alterarEndereco(Endereco.novoEndereco(clienteDTO.getCep(), clienteDTO.getLogradouro(), 
-	            clienteDTO.getNumero(), clienteDTO.getComplemento(), clienteDTO.getReferencia(), 
-	            clienteDTO.getBairro(), clienteDTO.getMunicipio(), clienteDTO.getUf()));
+	    ClienteDTO dto = mapper.toDto(cliente);
 	    
-	    cliente = repository.save(cliente);	          
-        return mapper.toDto(cliente);
+	    dto.setCep(clienteDTO.getCep());
+	    dto.setLogradouro(clienteDTO.getLogradouro());
+	    dto.setNumero(clienteDTO.getNumero());
+	    dto.setComplemento(clienteDTO.getComplemento());
+	    dto.setReferencia(clienteDTO.getReferencia());
+	    dto.setBairro(clienteDTO.getBairro());
+	    dto.setMunicipio(clienteDTO.getMunicipio());
+	    dto.setUf(clienteDTO.getUf());
+	    
+	    Cliente clienteAlterado = mapper.toModel(dto);	    
+	    repository.save(clienteAlterado);
      }
 
 }
