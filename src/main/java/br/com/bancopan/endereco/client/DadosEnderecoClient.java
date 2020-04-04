@@ -1,14 +1,20 @@
 package br.com.bancopan.endereco.client;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+import br.com.bancopan.endereco.dto.CepClientDTO;
+import br.com.bancopan.endereco.dto.EstadoClientDTO;
 import br.com.bancopan.endereco.exception.NotFoundException;
 
-@Component
+@Service
 public class DadosEnderecoClient {
 
     @Value("${url.consulta.cep}")
@@ -17,19 +23,24 @@ public class DadosEnderecoClient {
     @Value("${url.consulta.estados}")
     private String urlEstados;
 
-    public ResponseEntity<String> buscaEnderecoPorCEP(String cep) {
+    public CepClientDTO buscaEnderecoPorCEP(String cep) {
         RestTemplate restTemplate = new RestTemplate();
         try {
-            return restTemplate.getForEntity(urlCep + cep + "/json", String.class);
+            return restTemplate.getForEntity(urlCep + cep + "/json", CepClientDTO.class).getBody();
         } catch (HttpClientErrorException e) {
             throw new NotFoundException("CEP não encontrado");
         }
     }
 
-    public ResponseEntity<Object[]> buscaEstados() throws Exception {
+    public List<EstadoClientDTO> buscaEstados() throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         try {
-            return restTemplate.getForEntity(urlEstados, Object[].class);
+            ResponseEntity<EstadoClientDTO[]> responseEntity = restTemplate
+                    .getForEntity(urlEstados, EstadoClientDTO[].class);
+            
+            List<EstadoClientDTO> response = Arrays.asList(responseEntity.getBody());
+            Collections.sort(response);        
+            return response;
         } catch (HttpClientErrorException e) {
             throw new Exception("Erro ao buscar dados");
         }
