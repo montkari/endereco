@@ -1,6 +1,6 @@
 # crud-endereco
 
-H2 http://localhost:8080/dados-cadastro/h2-console (Existe um registro do CPF gerado através do gerador de CPF (55217715065))
+H2 http://localhost:8080/dados-cadastro/h2-console (Existe um registro com o CPF 55217715065 - (gerado através do site Gerador de CPF))
 
 GET - Buscar um cliente pelo CPF -  http://localhost:8080/dados-cadastro/cliente/{cpf}
 
