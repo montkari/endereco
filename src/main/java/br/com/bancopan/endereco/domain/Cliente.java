@@ -40,16 +40,7 @@ public class Cliente extends DTOValidation {
 	@Embedded
 	private Endereco endereco;
 	
-    public static Cliente novoCliente(String nome, String cpf, LocalDate dataNascimento, String profissao,
-            Endereco endereco) {
-        return new Cliente(nome, cpf, dataNascimento, profissao, endereco);
-    }
-
-    public Cliente(String nome, String cpf, LocalDate dataNascimento, String profissao, Endereco endereco) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.dataNascimento = dataNascimento;
-        this.profissao = profissao;
+    public void alterarEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
 

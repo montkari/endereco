@@ -12,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 
 import br.com.bancopan.endereco.dto.CepClientDTO;
 import br.com.bancopan.endereco.dto.EstadoClientDTO;
+import br.com.bancopan.endereco.dto.MunicipioClientDTO;
 import br.com.bancopan.endereco.exception.NotFoundException;
 
 @Service
@@ -46,10 +47,10 @@ public class DadosEnderecoClient {
         }
     }
     
-    public ResponseEntity<Object[]> buscaMunicipios(Integer idEstado) throws Exception {
+    public ResponseEntity<MunicipioClientDTO[]> buscaMunicipios(Integer idEstado) throws Exception {
         RestTemplate restTemplate = new RestTemplate();
         try {
-            return restTemplate.getForEntity(urlEstados + idEstado + "/municipios", Object[].class);
+            return restTemplate.getForEntity(urlEstados + idEstado + "/municipios", MunicipioClientDTO[].class);
         } catch (HttpClientErrorException e) {
             throw new Exception("Erro ao buscar dados");
         }

@@ -5,11 +5,9 @@ import java.util.List;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString
 public class EstadoClientDTO implements Comparable<EstadoClientDTO> {
     
     private static final List<String> SIGLAS_PRIORITARIAS_ORDENACAO = Arrays.asList("SP", "RJ");

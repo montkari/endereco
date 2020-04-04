@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.bancopan.endereco.client.DadosEnderecoClient;
 import br.com.bancopan.endereco.dto.CepClientDTO;
 import br.com.bancopan.endereco.dto.EstadoClientDTO;
+import br.com.bancopan.endereco.dto.MunicipioClientDTO;
 
 @RestController
 @RequestMapping("/endereco")
@@ -31,7 +32,7 @@ public class EnderecoController {
     }
     
     @GetMapping("/{idEstado}/municipios")
-    public ResponseEntity<Object[]> buscarMunicipios(@PathVariable Integer idEstado) throws Exception {
+    public ResponseEntity<MunicipioClientDTO[]> buscarMunicipios(@PathVariable Integer idEstado) throws Exception {
         return dadosEnderecoClient.buscaMunicipios(idEstado);
     }
 
